@@ -4,8 +4,8 @@ import path from 'path';
 const js = {
   entry: './src/index.jsx',
   output: {
-    publicPath: 'assets/',
-    path: 'assets/',
+    publicPath: '/assets/',
+    path: __dirname + 'assets/',
     filename: 'bundle.js',
   },
   devtool: 'source-map',

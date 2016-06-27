@@ -4,6 +4,7 @@ env:
 # extends: 'eslint:recommended'
 extends: 'airbnb'
 parserOptions:
+  ecmaVersion: 6
   ecmaFeatures:
     experimentalObjectRestSpread: true
     jsx: true
