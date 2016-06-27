@@ -34,6 +34,44 @@ class ImageList extends React.Component {
 }
 ImageList.propTypes = { images: React.PropTypes.arrayOf(React.PropTypes.string).isRequired };
 
+class Keyword extends React.Component {
+  render() {
+    return <p>{this.props.keyword.relPath}</p>;
+  }
+}
+Keyword.propTypes = { keyword: React.PropTypes.object };
+
+class KeywordList extends React.Component {
+  constructor() {
+    super();
+    this.state = { keywords: [] };
+  }
+  componentDidMount() {
+    const url = '/public/images/list.json';
+    fetch(url)
+      .then(res => res.json())
+      .then(json => {
+        this.setState({ keywords: json });
+        console.log(this.state.keywords);
+      })
+      .catch(e => {
+        throw new Error(e);
+      })
+      ;
+  }
+  render() {
+    console.log(this.state.keywords);
+    const keywordElems = this.state.keywords.map(k => {
+      return <Keyword key={k.id} keyword={k} />;
+    });
+    return (
+      <div className="keywordList">
+        {keywordElems}
+      </div>
+    );
+  }
+}
+
 const urlBase = '/assets/';
 const imgRelpathList = [
   'ddl/8699_0007.png',
@@ -44,5 +82,8 @@ const imgRelpathList = [
 const images = imgRelpathList.map(path => ({ src: `${urlBase}/${path}` }));
 
 ReactDOM.render((
-  <ImageList images={images} />
+  <div>
+    <KeywordList />
+    <ImageList images={images} />
+  </div>
 ), document.getElementById('app'));
