@@ -1,5 +1,3 @@
-import path from 'path';
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, Link, useRouterHistory } from 'react-router';
@@ -8,7 +6,6 @@ import { createHashHistory } from 'history';
 
 import KeywordGallery from './keywordGallery.jsx';
 
-// import { Router, Route, IndexRoute, Link, IndexLink, useRouterHistory } from 'react-router';
 // import { createHashHistory } from 'history';
 
 class Image extends React.Component {
