@@ -66,7 +66,6 @@ class KeywordList extends React.Component {
       ;
   }
   render() {
-    console.log(this.state.keywords);
     const keywordElems = this.state.keywords.map(k => {
       return <Keyword key={k.id} keyword={k} />;
     });
@@ -77,15 +76,6 @@ class KeywordList extends React.Component {
     );
   }
 }
-
-// const urlBase = '/public/images';
-// const imgRelpathList = [
-//   'ddl/8699_0007.png',
-//   'ddl/8699_0008.png',
-//   // 'ddl/8699_0009.png',
-// ];
-
-// const images = imgRelpathList.map(relPath => ({ src: path.join(urlBase, relPath) }));
 
 class App extends React.Component {
   render() {
