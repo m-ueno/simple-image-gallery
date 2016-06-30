@@ -1,5 +1,10 @@
+import path from 'path';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
+
+import KeywordGallery from './keywordGallery.jsx';
+
 // import { Router, Route, IndexRoute, Link, IndexLink, useRouterHistory } from 'react-router';
 // import { createHashHistory } from 'history';
 
@@ -84,6 +89,6 @@ const images = imgRelpathList.map(path => ({ src: `${urlBase}/${path}` }));
 ReactDOM.render((
   <div>
     <KeywordList />
-    <ImageList images={images} />
+    <KeywordGallery keyword="ddl" />
   </div>
 ), document.getElementById('app'));
