@@ -5,7 +5,7 @@ const js = {
   entry: './src/index.jsx',
   output: {
     publicPath: '/assets/',
-    path: __dirname + 'assets/',
+    path: path.join(__dirname, 'assets'),
     filename: 'bundle.js',
   },
   devtool: 'source-map',
