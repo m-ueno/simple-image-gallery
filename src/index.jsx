@@ -2,6 +2,9 @@ import path from 'path';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Router, Route, Link, useRouterHistory } from 'react-router';
+// import { Router, Route, IndexRoute, Link, IndexLink, useRouterHistory } from 'react-router';
+import { createHashHistory } from 'history';
 
 import KeywordGallery from './keywordGallery.jsx';
 
@@ -38,7 +41,11 @@ ImageList.propTypes = { images: React.PropTypes.arrayOf(React.PropTypes.string).
 
 class Keyword extends React.Component {
   render() {
-    return <p>{this.props.keyword.relPath}</p>;
+    return (
+      <p><Link to={`/keyword${this.props.keyword.relPath}`}>
+        {this.props.keyword.relPath}
+      </Link></p>
+    );
   }
 }
 Keyword.propTypes = { keyword: React.PropTypes.object };
@@ -83,9 +90,21 @@ class KeywordList extends React.Component {
 
 // const images = imgRelpathList.map(relPath => ({ src: path.join(urlBase, relPath) }));
 
+class App extends React.Component {
+  render() {
+    return (
+      <div>
+        <KeywordList />
+        {this.props.children}
+      </div>
+    );
+  }
+}
+
 ReactDOM.render((
-  <div>
-    <KeywordList />
-    <KeywordGallery keyword="ddl" />
-  </div>
+  <Router history={useRouterHistory(createHashHistory)({ queryKey: false })}>
+    <Route path="/" component={App}>
+      <Route path="/keyword/:keyword" component={KeywordGallery} />
+    </Route>
+  </Router>
 ), document.getElementById('app'));

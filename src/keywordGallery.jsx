@@ -7,7 +7,7 @@ export default class KeywordGallery extends React.Component {
     this.state = { photoSet: [] };
   }
   componentDidMount() {
-    const url = `/public/images/${this.props.keyword}/list.json`;
+    const url = `/public/images/${this.props.params.keyword}/list.json`;
     const urlBase = '/public/images';
     fetch(url)
       .then(res => res.json())
@@ -26,4 +26,4 @@ export default class KeywordGallery extends React.Component {
     );
   }
 }
-KeywordGallery.propTypes = { keyword: React.PropTypes.string };
+KeywordGallery.propTypes = { params: React.PropTypes.object };
