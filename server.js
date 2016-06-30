@@ -40,6 +40,8 @@ const baseUrl = '/public/images';
 // GET /public/images <= ./public/images
 app.use('/public', express.static(__dirname + '/public'));
 
+app.use('/assets', express.static(__dirname + '/assets'));
+
 // GET / <= ./index.html
 app.use(/^\/$/, (req, res) => {
   res.sendFile(__dirname + '/index.html');

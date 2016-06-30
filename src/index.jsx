@@ -9,9 +9,6 @@ import KeywordGallery from './keywordGallery.jsx';
 // import { createHashHistory } from 'history';
 
 class Image extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  // }
   render() {
     return (
       /* {...this.props} :
@@ -77,14 +74,14 @@ class KeywordList extends React.Component {
   }
 }
 
-const urlBase = '/assets/';
-const imgRelpathList = [
-  'ddl/8699_0007.png',
-  'ddl/8699_0008.png',
-  'ddl/8699_0009.png',
-];
+// const urlBase = '/public/images';
+// const imgRelpathList = [
+//   'ddl/8699_0007.png',
+//   'ddl/8699_0008.png',
+//   // 'ddl/8699_0009.png',
+// ];
 
-const images = imgRelpathList.map(path => ({ src: `${urlBase}/${path}` }));
+// const images = imgRelpathList.map(relPath => ({ src: path.join(urlBase, relPath) }));
 
 ReactDOM.render((
   <div>
