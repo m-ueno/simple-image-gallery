@@ -4,7 +4,7 @@ import Gallery from 'react-photo-gallery';
 export default class KeywordGallery extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { photoSet: [], keyword: '' };
+    this.state = { photoSet: [], keyword: props.params.keyword };
   }
   componentDidMount() {
     this.fetchImages();
@@ -25,6 +25,7 @@ export default class KeywordGallery extends React.Component {
         this.setState({ photoSet: photos });
       })
       .catch(e => {
+        console.error('err', e);
         throw new Error(e);
       })
       ;
