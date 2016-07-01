@@ -3,10 +3,17 @@ import ReactDOM from 'react-dom';
 import { Router, Route, Link, useRouterHistory } from 'react-router';
 // import { Router, Route, IndexRoute, Link, IndexLink, useRouterHistory } from 'react-router';
 import { createHashHistory } from 'history';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { List, ListItem } from 'material-ui/List';
+// import Drawer from 'material-ui/Drawer';
+import MenuItem from 'material-ui/MenuItem';
 
 import KeywordGallery from './keywordGallery.jsx';
 
 // import { createHashHistory } from 'history';
+
+injectTapEventPlugin();
 
 class Image extends React.Component {
   render() {
@@ -77,12 +84,74 @@ class KeywordList extends React.Component {
   }
 }
 
+class KeywordListDrawer extends React.Component {
+  constructor() {
+    super();
+    this.state = { keywords: [] };
+  }
+  componentDidMount() {
+    const url = '/public/images/list.json';
+    fetch(url)
+      .then(res => res.json())
+      .then(json => {
+        this.setState({ keywords: json });
+        console.log(this.state.keywords);
+      })
+      .catch(e => {
+        throw new Error(e);
+      })
+      ;
+  }
+  render() {
+    const keywordElems = this.state.keywords.map(k => {
+      return <MenuItem><Keyword key={k.id} keyword={k} /></MenuItem>;
+    });
+    return (
+      <Drawer docked open={true}>
+        {keywordElems}
+      </Drawer>
+    );
+  }
+}
+
+class KeywordListBar extends React.Component {
+  constructor() {
+    super();
+    this.state = { keywords: [] };
+  }
+  componentDidMount() {
+    const url = '/public/images/list.json';
+    fetch(url)
+      .then(res => res.json())
+      .then(json => {
+        this.setState({ keywords: json });
+        console.log(this.state.keywords);
+      })
+      .catch(e => {
+        throw new Error(e);
+      })
+      ;
+  }
+  render() {
+    const keywordElems = this.state.keywords.map(k => {
+      return <ListItem><Keyword key={k.id} keyword={k} /></ListItem>;
+    });
+    return (
+      <List>
+        {keywordElems}
+      </List>
+    );
+  }
+}
+
 class App extends React.Component {
   render() {
     return (
       <div>
-        <KeywordList />
-        {this.props.children}
+      <MuiThemeProvider>
+        <KeywordListBar />
+      </MuiThemeProvider>
+      {this.props.children}
       </div>
     );
   }
